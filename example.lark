@@ -1,9 +1,1 @@
-print("Hello from starlark!")
-
-my_list = []
-
-def cool_func(example_list):
-    for i in range(5):
-        example_list.append(i)
-
-cool_func(my_list)
+logo = load_image("https://raw.githubusercontent.com/fogo-sh/CSBWiki/main/logo.png")

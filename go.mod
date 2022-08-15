@@ -7,6 +7,7 @@ require (
 	github.com/rs/zerolog v1.27.0
 	github.com/spf13/cobra v1.5.0
 	go.starlark.net v0.0.0-20220815112429-e1b9ebd162dd
+	gopkg.in/gographics/imagick.v2 v2.6.1
 )
 
 require (
