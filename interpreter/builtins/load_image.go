@@ -39,5 +39,5 @@ func loadImage(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kw
 		return nil, fmt.Errorf("error reading image: %w", err)
 	}
 
-	return &types.Image{Wand: inputImg}, nil
+	return types.Image{Wand: inputImg}, nil
 }

@@ -1,4 +1,3 @@
 logo = load_image("https://raw.githubusercontent.com/fogo-sh/CSBWiki/main/logo.png")
 
-print("width", logo.width)
-print("height", logo.height)
+output = liquid_rescale(logo, logo.width // 2, logo.height // 2)

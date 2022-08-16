@@ -12,34 +12,33 @@ type Image struct {
 	Wand *imagick.MagickWand
 }
 
-func (i *Image) String() string {
+func (i Image) String() string {
 	//TODO add better string representation
 	return i.Wand.IdentifyImage()
 }
 
-func (i *Image) Type() string {
+func (i Image) Type() string {
 	return "Image"
 }
 
-func (i *Image) Freeze() {
-	//TODO implement me
+func (i Image) Freeze() {
 	return
 }
 
-func (i *Image) Truth() starlark.Bool {
+func (i Image) Truth() starlark.Bool {
 	return starlark.True
 }
 
-func (i *Image) Hash() (uint32, error) {
+func (i Image) Hash() (uint32, error) {
 	//TODO implement me
 	return 0, errors.New("not implemented")
 }
 
-func (i *Image) AttrNames() []string {
+func (i Image) AttrNames() []string {
 	return []string{"width", "height"}
 }
 
-func (i *Image) Attr(name string) (starlark.Value, error) {
+func (i Image) Attr(name string) (starlark.Value, error) {
 	switch name {
 	case "height":
 		return starlark.MakeInt(int(i.Wand.GetImageHeight())), nil

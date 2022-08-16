@@ -3,7 +3,6 @@ module github.com/fogo-sh/sorik
 go 1.18
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/rs/zerolog v1.27.0
 	github.com/spf13/cobra v1.5.0
 	go.starlark.net v0.0.0-20220815112429-e1b9ebd162dd
