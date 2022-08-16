@@ -1,7 +1,7 @@
 """
 Reimplementation of Borik's magik command as a Sorik script
 
-Usage: sorik run examples/magik.lark --args=image_url=DESIRED_IMAGE_URL,scale=INTENSITY
+Usage: sorik run examples/magik.star --args=image_url=DESIRED_IMAGE_URL,scale=INTENSITY
 """
 
 image_url = get_arg("image_url")
