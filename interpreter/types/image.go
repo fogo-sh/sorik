@@ -2,6 +2,7 @@ package types
 
 import (
 	"errors"
+	"fmt"
 
 	"go.starlark.net/starlark"
 	"gopkg.in/gographics/imagick.v2/imagick"
@@ -34,4 +35,20 @@ func (i *Image) Hash() (uint32, error) {
 	return 0, errors.New("not implemented")
 }
 
+func (i *Image) AttrNames() []string {
+	return []string{"width", "height"}
+}
+
+func (i *Image) Attr(name string) (starlark.Value, error) {
+	switch name {
+	case "height":
+		return starlark.MakeInt(int(i.Wand.GetImageHeight())), nil
+	case "width":
+		return starlark.MakeInt(int(i.Wand.GetImageWidth())), nil
+	default:
+		return nil, starlark.NoSuchAttrError(fmt.Sprintf("type image has no attribute %s", name))
+	}
+}
+
 var _ starlark.Value = (*Image)(nil)
+var _ starlark.HasAttrs = (*Image)(nil)

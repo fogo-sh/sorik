@@ -1,1 +1,4 @@
 logo = load_image("https://raw.githubusercontent.com/fogo-sh/CSBWiki/main/logo.png")
+
+print("width", logo.width)
+print("height", logo.height)
