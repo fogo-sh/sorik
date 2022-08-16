@@ -15,7 +15,7 @@ import (
 	"github.com/fogo-sh/sorik/interpreter/types"
 )
 
-func Run(filename string, source []byte) error {
+func Run(filename string, source []byte, args map[string]string) error {
 	imagick.Initialize()
 	defer imagick.Terminate()
 
@@ -27,6 +27,7 @@ func Run(filename string, source []byte) error {
 			return nil, fmt.Errorf("sorik does not support importing external code")
 		},
 	}
+	thread.SetLocal("args", args)
 
 	globals, err := starlark.ExecFile(thread, filename, source, builtins.ConstructBuiltins())
 	if err != nil {
@@ -55,11 +56,11 @@ func Run(filename string, source []byte) error {
 	return nil
 }
 
-func LoadAndExec(path string) error {
+func LoadAndExec(path string, args map[string]string) error {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return fmt.Errorf("error loading script: %w", err)
 	}
 
-	return Run(filepath.Base(path), data)
+	return Run(filepath.Base(path), data, args)
 }
