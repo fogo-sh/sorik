@@ -9,6 +9,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"go.starlark.net/starlark"
 	"gopkg.in/gographics/imagick.v2/imagick"
+
+	"github.com/fogo-sh/sorik/interpreter/builtins"
 )
 
 func Run(filename string, source []byte) error {
@@ -21,7 +23,7 @@ func Run(filename string, source []byte) error {
 		},
 	}
 
-	globals, err := starlark.ExecFile(thread, filename, source, constructBuiltins())
+	globals, err := starlark.ExecFile(thread, filename, source, builtins.ConstructBuiltins())
 	if err != nil {
 		return fmt.Errorf("error executing file: %w", err)
 	}

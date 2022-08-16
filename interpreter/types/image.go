@@ -1,4 +1,4 @@
-package interpreter
+package types
 
 import (
 	"errors"
@@ -8,12 +8,12 @@ import (
 )
 
 type Image struct {
-	wand *imagick.MagickWand
+	Wand *imagick.MagickWand
 }
 
 func (i *Image) String() string {
 	//TODO add better string representation
-	return i.wand.IdentifyImage()
+	return i.Wand.IdentifyImage()
 }
 
 func (i *Image) Type() string {
@@ -30,6 +30,7 @@ func (i *Image) Truth() starlark.Bool {
 }
 
 func (i *Image) Hash() (uint32, error) {
+	//TODO implement me
 	return 0, errors.New("not implemented")
 }
 
