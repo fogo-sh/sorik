@@ -6,8 +6,12 @@ import (
 
 func ConstructBuiltins() starlark.StringDict {
 	return starlark.StringDict{
-		"load_image":     starlark.NewBuiltin("load_image", loadImage),
+		// Utilities
+		"get_arg":    starlark.NewBuiltin("get_arg", getArg),
+		"load_image": starlark.NewBuiltin("load_image", loadImage),
+
+		// ImageMagick wrappers
 		"liquid_rescale": starlark.NewBuiltin("liquid_rescale", liquidRescale),
-		"get_arg":        starlark.NewBuiltin("get_arg", getArg),
+		"swirl":          starlark.NewBuiltin("swirl", swirl),
 	}
 }
