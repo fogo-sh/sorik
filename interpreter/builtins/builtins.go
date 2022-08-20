@@ -17,5 +17,6 @@ func ConstructBuiltins() starlark.StringDict {
 		"invert":           starlark.NewBuiltin("invert", invert),
 		"transform":        starlark.NewBuiltin("transform", transform),
 		"contrast_stretch": starlark.NewBuiltin("contrast_stretch", contrastStretch),
+		"sharpen":          starlark.NewBuiltin("sharpen", sharpen),
 	}
 }
