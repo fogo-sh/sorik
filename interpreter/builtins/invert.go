@@ -15,7 +15,7 @@ func invert(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwarg
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,
 		"image", &image,
-		"greyscale_only", &greyscaleOnly,
+		"greyscale_only?", &greyscaleOnly,
 	); err != nil {
 		return nil, err
 	}
