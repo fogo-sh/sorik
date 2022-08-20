@@ -13,5 +13,6 @@ func ConstructBuiltins() starlark.StringDict {
 		// ImageMagick wrappers
 		"liquid_rescale": starlark.NewBuiltin("liquid_rescale", liquidRescale),
 		"swirl":          starlark.NewBuiltin("swirl", swirl),
+		"edge_detect":    starlark.NewBuiltin("edge_detect", edgeDetect),
 	}
 }
