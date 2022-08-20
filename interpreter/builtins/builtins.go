@@ -14,5 +14,6 @@ func ConstructBuiltins() starlark.StringDict {
 		"liquid_rescale": starlark.NewBuiltin("liquid_rescale", liquidRescale),
 		"swirl":          starlark.NewBuiltin("swirl", swirl),
 		"edge_detect":    starlark.NewBuiltin("edge_detect", edgeDetect),
+		"invert":         starlark.NewBuiltin("invert", invert),
 	}
 }
