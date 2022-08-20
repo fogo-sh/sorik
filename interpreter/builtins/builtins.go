@@ -11,10 +11,11 @@ func ConstructBuiltins() starlark.StringDict {
 		"load_image": starlark.NewBuiltin("load_image", loadImage),
 
 		// ImageMagick wrappers
-		"liquid_rescale": starlark.NewBuiltin("liquid_rescale", liquidRescale),
-		"swirl":          starlark.NewBuiltin("swirl", swirl),
-		"edge_detect":    starlark.NewBuiltin("edge_detect", edgeDetect),
-		"invert":         starlark.NewBuiltin("invert", invert),
-		"transform":      starlark.NewBuiltin("transform", transform),
+		"liquid_rescale":   starlark.NewBuiltin("liquid_rescale", liquidRescale),
+		"swirl":            starlark.NewBuiltin("swirl", swirl),
+		"edge_detect":      starlark.NewBuiltin("edge_detect", edgeDetect),
+		"invert":           starlark.NewBuiltin("invert", invert),
+		"transform":        starlark.NewBuiltin("transform", transform),
+		"contrast_stretch": starlark.NewBuiltin("contrast_stretch", contrastStretch),
 	}
 }
