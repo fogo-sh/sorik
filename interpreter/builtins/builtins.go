@@ -2,6 +2,8 @@ package builtins
 
 import (
 	"go.starlark.net/starlark"
+
+	"github.com/fogo-sh/sorik/interpreter/types"
 )
 
 func ConstructBuiltins() starlark.StringDict {
@@ -22,5 +24,9 @@ func ConstructBuiltins() starlark.StringDict {
 		"modulate":         starlark.NewBuiltin("modulate", modulate),
 		"gaussian_blur":    starlark.NewBuiltin("gaussian_blur", gaussianBlur),
 		"flip":             starlark.NewBuiltin("flip", flip),
+		"resize":           starlark.NewBuiltin("resize", resize),
+
+		// Enums
+		"ResizeFilter": types.ResizeFilterEnum{},
 	}
 }
