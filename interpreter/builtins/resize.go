@@ -13,7 +13,7 @@ func resize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwarg
 		image  types.Image
 		width  uint
 		height uint
-		filter types.ResizeFilter
+		filter types.FilterType
 		blur   float64
 	)
 
@@ -29,7 +29,7 @@ func resize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwarg
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.ResizeImage(width, height, filter.FilterType, blur)
+	err := newImg.ResizeImage(width, height, filter.Value, blur)
 	if err != nil {
 		return nil, fmt.Errorf("error swirling image: %w", err)
 	}

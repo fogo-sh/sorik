@@ -27,6 +27,6 @@ func ConstructBuiltins() starlark.StringDict {
 		"resize":           starlark.NewBuiltin("resize", resize),
 
 		// Enums
-		"ResizeFilter": types.ResizeFilterEnum{},
+		"FilterType": types.FilterTypeEnum{},
 	}
 }
