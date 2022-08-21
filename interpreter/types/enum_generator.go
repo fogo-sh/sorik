@@ -3,9 +3,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"go/ast"
 	"go/build"
+	"go/format"
 	"go/parser"
 	"go/token"
 	"os"
@@ -24,12 +26,12 @@ import (
 )
 
 type {{ .Type }} struct {
-	Value imagick.{{ .Type }}
+	Value     imagick.{{ .Type }}
+	StringVal string
 }
 
 func (v {{ .Type }}) String() string {
-	//TODO implement me
-	return fmt.Sprintf("{{ .Type }} %s", v.Value)
+	return fmt.Sprintf("{{ .Type }} %s", v.StringVal)
 }
 
 func (v {{ .Type }}) Type() string {
@@ -52,7 +54,7 @@ var _ starlark.Value = (*{{ .Type }})(nil)
 
 var _{{ .Type }}Map = map[string]{{ .Type }} {
 	{{- range $val := .Values }}
-	"{{ $val }}": { imagick.{{ $val }} },
+	"{{ $val }}": { imagick.{{ $val }}, "{{ $val }}" },
 	{{- end }}
 }
 
@@ -133,13 +135,10 @@ func main() {
 		return true
 	})
 
-	outFile, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
-	if err != nil {
-		panic(err)
-	}
+	outBuffer := new(bytes.Buffer)
 
 	codeTemplate.Execute(
-		outFile,
+		outBuffer,
 		struct {
 			Type     string
 			FileName string
@@ -150,4 +149,19 @@ func main() {
 			Values:   values,
 		},
 	)
+
+	formattedBytes, err := format.Source(outBuffer.Bytes())
+	if err != nil {
+		panic(err)
+	}
+
+	outFile, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = outFile.Write(formattedBytes)
+	if err != nil {
+		panic(err)
+	}
 }
