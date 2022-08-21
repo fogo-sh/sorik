@@ -1,0 +1,40 @@
+package builtins
+
+import (
+	"fmt"
+
+	"go.starlark.net/starlark"
+
+	"github.com/fogo-sh/sorik/interpreter/types"
+)
+
+func quantize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
+	var (
+		image          types.Image
+		numColors      uint
+		colorspaceType types.ColorspaceType
+		treeDepth      uint
+		dither         bool
+		measureError   bool
+	)
+
+	if err := starlark.UnpackArgs(
+		fn.Name(), args, kwargs,
+		"image", &image,
+		"num_colors", &numColors,
+		"colorspace_type", &colorspaceType,
+		"tree_depth", &treeDepth,
+		"dither", &dither,
+		"measure_error", &measureError,
+	); err != nil {
+		return nil, err
+	}
+
+	newImg := image.Wand.Clone()
+	err := newImg.QuantizeImage(numColors, colorspaceType.Value, treeDepth, dither, measureError)
+	if err != nil {
+		return nil, fmt.Errorf("error quantizing image: %w", err)
+	}
+
+	return types.Image{Wand: newImg}, nil
+}
