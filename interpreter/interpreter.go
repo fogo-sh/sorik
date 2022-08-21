@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/rs/zerolog/log"
+	"go.starlark.net/resolve"
 	"go.starlark.net/starlark"
 	"gopkg.in/gographics/imagick.v2/imagick"
 
@@ -16,6 +17,8 @@ import (
 )
 
 func Run(filename string, source []byte, args map[string]string) error {
+	resolve.AllowGlobalReassign = true
+
 	imagick.Initialize()
 	defer imagick.Terminate()
 
