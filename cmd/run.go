@@ -1,10 +1,13 @@
 package cmd
 
 import (
+	"errors"
+	"fmt"
 	"os"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
+	"go.starlark.net/starlark"
 
 	"github.com/fogo-sh/sorik/interpreter"
 )
@@ -22,7 +25,13 @@ var runCmd = &cobra.Command{
 
 		err = interpreter.LoadAndExec(args[0], scriptArgs)
 		if err != nil {
-			log.Error().Err(err).Msg("Error executing script")
+			evalErr, isEvalErr := errors.Unwrap(err).(*starlark.EvalError)
+			if isEvalErr {
+				fmt.Println(evalErr.Backtrace())
+			} else {
+				log.Error().Err(err).Msg("Error executing script")
+			}
+
 			os.Exit(1)
 		}
 	},
