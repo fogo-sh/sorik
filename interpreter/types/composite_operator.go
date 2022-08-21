@@ -12,11 +12,11 @@ import (
 
 type CompositeOperator struct {
 	Value     imagick.CompositeOperator
-	StringVal string
+	stringVal string
 }
 
 func (v CompositeOperator) String() string {
-	return fmt.Sprintf("CompositeOperator %s", v.StringVal)
+	return fmt.Sprintf("CompositeOperator %s", v.stringVal)
 }
 
 func (v CompositeOperator) Type() string {
@@ -108,6 +108,77 @@ var _CompositeOperatorMap = map[string]CompositeOperator{
 	"COMPOSITE_OP_LIGHTEN_INTENSITY": {imagick.COMPOSITE_OP_LIGHTEN_INTENSITY, "COMPOSITE_OP_LIGHTEN_INTENSITY"},
 }
 
+var _CompositeOperatorNames = []string{
+	"COMPOSITE_OP_UNDEFINED",
+	"COMPOSITE_OP_NO",
+	"COMPOSITE_OP_MODULUS_ADD",
+	"COMPOSITE_OP_ATOP",
+	"COMPOSITE_OP_BLEND",
+	"COMPOSITE_OP_BUMPMAP",
+	"COMPOSITE_OP_CHANGE_MASK",
+	"COMPOSITE_OP_CLEAR",
+	"COMPOSITE_OP_COLOR_BURN",
+	"COMPOSITE_OP_COLOR_DODGE",
+	"COMPOSITE_OP_COLORIZE",
+	"COMPOSITE_OP_COPY_BLACK",
+	"COMPOSITE_OP_COPY_BLUE",
+	"COMPOSITE_OP_COPY",
+	"COMPOSITE_OP_COPY_CYAN",
+	"COMPOSITE_OP_COPY_GREEN",
+	"COMPOSITE_OP_COPY_MAGENTA",
+	"COMPOSITE_OP_COPY_OPACITY",
+	"COMPOSITE_OP_COPY_RED",
+	"COMPOSITE_OP_COPY_YELLOW",
+	"COMPOSITE_OP_DARKEN",
+	"COMPOSITE_OP_DST_ATOP",
+	"COMPOSITE_OP_DST",
+	"COMPOSITE_OP_DST_IN",
+	"COMPOSITE_OP_DST_OUT",
+	"COMPOSITE_OP_DST_OVER",
+	"COMPOSITE_OP_DIFFERENCE",
+	"COMPOSITE_OP_DISPLACE",
+	"COMPOSITE_OP_DISSOLVE",
+	"COMPOSITE_OP_EXCLUSION",
+	"COMPOSITE_OP_HARD_LIGHT",
+	"COMPOSITE_OP_HUE",
+	"COMPOSITE_OP_IN",
+	"COMPOSITE_OP_LIGHTEN",
+	"COMPOSITE_OP_LINEAR_LIGHT",
+	"COMPOSITE_OP_LUMINIZE",
+	"COMPOSITE_OP_MINUS_DST",
+	"COMPOSITE_OP_MODULATE",
+	"COMPOSITE_OP_MULTIPLY",
+	"COMPOSITE_OP_OUT",
+	"COMPOSITE_OP_OVER",
+	"COMPOSITE_OP_OVERLAY",
+	"COMPOSITE_OP_PLUS",
+	"COMPOSITE_OP_REPLACE",
+	"COMPOSITE_OP_SATURATE",
+	"COMPOSITE_OP_SCREEN",
+	"COMPOSITE_OP_SOFT_LIGHT",
+	"COMPOSITE_OP_SRC_ATOP",
+	"COMPOSITE_OP_SRC",
+	"COMPOSITE_OP_SRC_IN",
+	"COMPOSITE_OP_SRC_OUT",
+	"COMPOSITE_OP_SRC_OVER",
+	"COMPOSITE_OP_MODULUS_SUBTRACT",
+	"COMPOSITE_OP_THRESHOLD",
+	"COMPOSITE_OP_XOR",
+	"COMPOSITE_OP_DIVIDE__DST",
+	"COMPOSITE_OP_DISTORT",
+	"COMPOSITE_OP_BLUR",
+	"COMPOSITE_OP_PEGTOP_LIGHT",
+	"COMPOSITE_OP_VIVID_LIGHT",
+	"COMPOSITE_OP_PIN_LIGHT",
+	"COMPOSITE_OP_LINEAR_DODGE",
+	"COMPOSITE_OP_LINEAR_BURN",
+	"COMPOSITE_OP_MATHEMATICS",
+	"COMPOSITE_OP_DIVIDE_SRC",
+	"COMPOSITE_OP_MINUS_SRC",
+	"COMPOSITE_OP_DARKEN_INTENSITY",
+	"COMPOSITE_OP_LIGHTEN_INTENSITY",
+}
+
 type CompositeOperatorEnum struct{}
 
 func (v CompositeOperatorEnum) String() string {
@@ -139,13 +210,7 @@ func (v CompositeOperatorEnum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v CompositeOperatorEnum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _CompositeOperatorMap {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _CompositeOperatorNames
 }
 
 var _ starlark.Value = (*CompositeOperatorEnum)(nil)

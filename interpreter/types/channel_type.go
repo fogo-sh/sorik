@@ -12,11 +12,11 @@ import (
 
 type ChannelType struct {
 	Value     imagick.ChannelType
-	StringVal string
+	stringVal string
 }
 
 func (v ChannelType) String() string {
-	return fmt.Sprintf("ChannelType %s", v.StringVal)
+	return fmt.Sprintf("ChannelType %s", v.stringVal)
 }
 
 func (v ChannelType) Type() string {
@@ -59,6 +59,28 @@ var _ChannelTypeMap = map[string]ChannelType{
 	"CHANNELS_DEFAULT":   {imagick.CHANNELS_DEFAULT, "CHANNELS_DEFAULT"},
 }
 
+var _ChannelTypeNames = []string{
+	"CHANNEL_UNDEFINED",
+	"CHANNEL_RED",
+	"CHANNEL_GRAY",
+	"CHANNEL_CYAN",
+	"CHANNEL_GREEN",
+	"CHANNEL_MAGENTA",
+	"CHANNEL_BLUE",
+	"CHANNEL_YELLOW",
+	"CHANNEL_ALPHA",
+	"CHANNEL_OPACITY",
+	"CHANNEL_BLACK",
+	"CHANNEL_INDEX",
+	"CHANNEL_TRUE_ALPHA",
+	"CHANNELS_COMPOSITE",
+	"CHANNELS_ALL",
+	"CHANNELS_RGB",
+	"CHANNELS_GRAY",
+	"CHANNELS_SYNC",
+	"CHANNELS_DEFAULT",
+}
+
 type ChannelTypeEnum struct{}
 
 func (v ChannelTypeEnum) String() string {
@@ -90,13 +112,7 @@ func (v ChannelTypeEnum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v ChannelTypeEnum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _ChannelTypeMap {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _ChannelTypeNames
 }
 
 var _ starlark.Value = (*ChannelTypeEnum)(nil)

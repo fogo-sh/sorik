@@ -12,11 +12,11 @@ import (
 
 type EvaluateOperator struct {
 	Value     imagick.EvaluateOperator
-	StringVal string
+	stringVal string
 }
 
 func (v EvaluateOperator) String() string {
-	return fmt.Sprintf("EvaluateOperator %s", v.StringVal)
+	return fmt.Sprintf("EvaluateOperator %s", v.stringVal)
 }
 
 func (v EvaluateOperator) Type() string {
@@ -72,6 +72,41 @@ var _EvaluateOperatorMap = map[string]EvaluateOperator{
 	"EVAL_OP_SUM":                  {imagick.EVAL_OP_SUM, "EVAL_OP_SUM"},
 }
 
+var _EvaluateOperatorNames = []string{
+	"EVAL_OP_UNDEFINED",
+	"EVAL_OP_ADD",
+	"EVAL_OP_AND",
+	"EVAL_OP_DIVIDE",
+	"EVAL_OP_LEFT_SHIFT",
+	"EVAL_OP_MAX",
+	"EVAL_OP_MIN",
+	"EVAL_OP_MULTIPLY",
+	"EVAL_OP_OR",
+	"EVAL_OP_RIGHT_SHIFT",
+	"EVAL_OP_SET",
+	"EVAL_OP_SUBTRACT",
+	"EVAL_OP_XOR",
+	"EVAL_OP_POW",
+	"EVAL_OP_LOG",
+	"EVAL_OP_THRESHOLD",
+	"EVAL_OP_THRESHOLD_BLACK",
+	"EVAL_OP_THRESHOLD_WHITE",
+	"EVAL_OP_GAUSSIAN_NOISE",
+	"EVAL_OP_IMPULSE_NOISE",
+	"EVAL_OP_LAPLACIAN_NOISE",
+	"EVAL_OP_MULTIPLICATIVE_NOISE",
+	"EVAL_OP_POISSON_NOISE",
+	"EVAL_OP_UNIFORM_NOISE",
+	"EVAL_OP_COSINE",
+	"EVAL_OP_SINE",
+	"EVAL_OP_ADD_MODULUS",
+	"EVAL_OP_MEAN",
+	"EVAL_OP_ABS",
+	"EVAL_OP_EXPONENTIAL",
+	"EVAL_OP_MEDIAN",
+	"EVAL_OP_SUM",
+}
+
 type EvaluateOperatorEnum struct{}
 
 func (v EvaluateOperatorEnum) String() string {
@@ -103,13 +138,7 @@ func (v EvaluateOperatorEnum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v EvaluateOperatorEnum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _EvaluateOperatorMap {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _EvaluateOperatorNames
 }
 
 var _ starlark.Value = (*EvaluateOperatorEnum)(nil)

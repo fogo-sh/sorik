@@ -12,11 +12,11 @@ import (
 
 type FilterType struct {
 	Value     imagick.FilterType
-	StringVal string
+	stringVal string
 }
 
 func (v FilterType) String() string {
-	return fmt.Sprintf("FilterType %s", v.StringVal)
+	return fmt.Sprintf("FilterType %s", v.stringVal)
 }
 
 func (v FilterType) Type() string {
@@ -72,6 +72,41 @@ var _FilterTypeMap = map[string]FilterType{
 	"FILTER_LANCZOS_RADIUS": {imagick.FILTER_LANCZOS_RADIUS, "FILTER_LANCZOS_RADIUS"},
 }
 
+var _FilterTypeNames = []string{
+	"FILTER_UNDEFINED",
+	"FILTER_POINT",
+	"FILTER_BOX",
+	"FILTER_TRIANGLE",
+	"FILTER_HERMITE",
+	"FILTER_HANNING",
+	"FILTER_HAMMING",
+	"FILTER_BLACKMAN",
+	"FILTER_GAUSSIAN",
+	"FILTER_QUADRATIC",
+	"FILTER_CUBIC",
+	"FILTER_CATROM",
+	"FILTER_MITCHELL",
+	"FILTER_JINC",
+	"FILTER_SINC",
+	"FILTER_SINC_FAST",
+	"FILTER_KAISER",
+	"FILTER_WELSH",
+	"FILTER_PARZEN",
+	"FILTER_BOHMAN",
+	"FILTER_BARTLETT",
+	"FILTER_LAGRANGE",
+	"FILTER_LANCZOS",
+	"FILTER_LANCZOS_SHARP",
+	"FILTER_LANCZOS2",
+	"FILTER_LANCZOS2_SHARP",
+	"FILTER_ROBIDOUX",
+	"FILTER_ROBIDOUX_SHARP",
+	"FILTER_COSINE",
+	"FILTER_SPLINE",
+	"FILTER_SENTINEL",
+	"FILTER_LANCZOS_RADIUS",
+}
+
 type FilterTypeEnum struct{}
 
 func (v FilterTypeEnum) String() string {
@@ -103,13 +138,7 @@ func (v FilterTypeEnum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v FilterTypeEnum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _FilterTypeMap {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _FilterTypeNames
 }
 
 var _ starlark.Value = (*FilterTypeEnum)(nil)

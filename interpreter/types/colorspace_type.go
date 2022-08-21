@@ -12,11 +12,11 @@ import (
 
 type ColorspaceType struct {
 	Value     imagick.ColorspaceType
-	StringVal string
+	stringVal string
 }
 
 func (v ColorspaceType) String() string {
-	return fmt.Sprintf("ColorspaceType %s", v.StringVal)
+	return fmt.Sprintf("ColorspaceType %s", v.stringVal)
 }
 
 func (v ColorspaceType) Type() string {
@@ -63,6 +63,32 @@ var _ColorspaceTypeMap = map[string]ColorspaceType{
 	"COLORSPACE_CMY":         {imagick.COLORSPACE_CMY, "COLORSPACE_CMY"},
 }
 
+var _ColorspaceTypeNames = []string{
+	"COLORSPACE_UNDEFINED",
+	"COLORSPACE_RGB",
+	"COLORSPACE_GRAY",
+	"COLORSPACE_TRANSPARENT",
+	"COLORSPACE_OHTA",
+	"COLORSPACE_LAB",
+	"COLORSPACE_XYZ",
+	"COLORSPACE_YCBCR",
+	"COLORSPACE_YCC",
+	"COLORSPACE_YIQ",
+	"COLORSPACE_YPBPR",
+	"COLORSPACE_YUV",
+	"COLORSPACE_CMYK",
+	"COLORSPACE_SRGB",
+	"COLORSPACE_HSB",
+	"COLORSPACE_HSL",
+	"COLORSPACE_HWB",
+	"COLORSPACE_REC601LUMA",
+	"COLORSPACE_REC601YCBCR",
+	"COLORSPACE_REC709LUMA",
+	"COLORSPACE_REC709YCBCR",
+	"COLORSPACE_LOG",
+	"COLORSPACE_CMY",
+}
+
 type ColorspaceTypeEnum struct{}
 
 func (v ColorspaceTypeEnum) String() string {
@@ -94,13 +120,7 @@ func (v ColorspaceTypeEnum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v ColorspaceTypeEnum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _ColorspaceTypeMap {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _ColorspaceTypeNames
 }
 
 var _ starlark.Value = (*ColorspaceTypeEnum)(nil)

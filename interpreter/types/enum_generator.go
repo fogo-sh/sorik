@@ -27,11 +27,11 @@ import (
 
 type {{ .Type }} struct {
 	Value     imagick.{{ .Type }}
-	StringVal string
+	stringVal string
 }
 
 func (v {{ .Type }}) String() string {
-	return fmt.Sprintf("{{ .Type }} %s", v.StringVal)
+	return fmt.Sprintf("{{ .Type }} %s", v.stringVal)
 }
 
 func (v {{ .Type }}) Type() string {
@@ -55,6 +55,12 @@ var _ starlark.Value = (*{{ .Type }})(nil)
 var _{{ .Type }}Map = map[string]{{ .Type }} {
 	{{- range $val := .Values }}
 	"{{ $val }}": { imagick.{{ $val }}, "{{ $val }}" },
+	{{- end }}
+}
+
+var _{{ .Type }}Names = []string{
+	{{- range $val := .Values }}
+	"{{ $val }}",
 	{{- end }}
 }
 
@@ -89,13 +95,7 @@ func (v {{ .Type }}Enum) Attr(name string) (starlark.Value, error) {
 }
 
 func (v {{ .Type }}Enum) AttrNames() []string {
-	var attrNames []string
-
-	for name := range _{{ .Type }}Map {
-		attrNames = append(attrNames, name)
-	}
-
-	return attrNames
+	return _{{ .Type }}Names
 }
 
 var _ starlark.Value = (*{{ .Type }}Enum)(nil)
