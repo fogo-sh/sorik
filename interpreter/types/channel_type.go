@@ -20,7 +20,7 @@ func (v ChannelType) String() string {
 }
 
 func (v ChannelType) Type() string {
-	return "%s"
+	return "ChannelType"
 }
 
 func (v ChannelType) Freeze() {

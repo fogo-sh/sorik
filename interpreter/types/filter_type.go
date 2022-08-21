@@ -20,7 +20,7 @@ func (v FilterType) String() string {
 }
 
 func (v FilterType) Type() string {
-	return "%s"
+	return "FilterType"
 }
 
 func (v FilterType) Freeze() {

@@ -20,7 +20,7 @@ func (v EvaluateOperator) String() string {
 }
 
 func (v EvaluateOperator) Type() string {
-	return "%s"
+	return "EvaluateOperator"
 }
 
 func (v EvaluateOperator) Freeze() {

@@ -20,7 +20,7 @@ func (v ColorspaceType) String() string {
 }
 
 func (v ColorspaceType) Type() string {
-	return "%s"
+	return "ColorspaceType"
 }
 
 func (v ColorspaceType) Freeze() {

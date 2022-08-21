@@ -35,7 +35,7 @@ func (v {{ .Type }}) String() string {
 }
 
 func (v {{ .Type }}) Type() string {
-	return "%s"
+	return "{{ .Type }}"
 }
 
 func (v {{ .Type }}) Freeze() {
