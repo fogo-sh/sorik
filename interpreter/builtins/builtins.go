@@ -25,8 +25,11 @@ func ConstructBuiltins() starlark.StringDict {
 		"gaussian_blur":    starlark.NewBuiltin("gaussian_blur", gaussianBlur),
 		"flip":             starlark.NewBuiltin("flip", flip),
 		"resize":           starlark.NewBuiltin("resize", resize),
+		"evaluate_channel": starlark.NewBuiltin("evaluate_channel", evaluateChannel),
 
 		// Enums
-		"FilterType": types.FilterTypeEnum{},
+		"FilterType":       types.FilterTypeEnum{},
+		"ChannelType":      types.ChannelTypeEnum{},
+		"EvaluateOperator": types.EvaluateOperatorEnum{},
 	}
 }
