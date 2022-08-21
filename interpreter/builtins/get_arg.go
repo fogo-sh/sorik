@@ -7,8 +7,14 @@ import (
 )
 
 func getArg(thread *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var name string
-	if err := starlark.UnpackArgs(fn.Name(), args, kwargs, "name", &name); err != nil {
+	var (
+		name string
+	)
+
+	if err := starlark.UnpackArgs(
+		fn.Name(), args, kwargs,
+		"name", &name,
+	); err != nil {
 		return nil, err
 	}
 

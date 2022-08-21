@@ -14,8 +14,14 @@ import (
 )
 
 func loadImage(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var url string
-	if err := starlark.UnpackArgs(fn.Name(), args, kwargs, "url", &url); err != nil {
+	var (
+		url string
+	)
+
+	if err := starlark.UnpackArgs(
+		fn.Name(), args, kwargs,
+		"url", &url,
+	); err != nil {
 		return nil, err
 	}
 

@@ -9,9 +9,11 @@ import (
 )
 
 func contrastStretch(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var blackPoint float64
-	var whitePoint float64
+	var (
+		image      types.Image
+		blackPoint float64
+		whitePoint float64
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,

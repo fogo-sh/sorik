@@ -9,10 +9,12 @@ import (
 )
 
 func modulate(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var brightness float64 = 100
-	var saturation float64 = 100
-	var hue float64 = 100
+	var (
+		image      types.Image
+		brightness = 100.0
+		saturation = 100.0
+		hue        = 100.0
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,

@@ -9,9 +9,11 @@ import (
 )
 
 func gaussianBlur(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var radius float64
-	var sigma float64
+	var (
+		image  types.Image
+		radius float64
+		sigma  float64
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,

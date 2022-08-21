@@ -9,8 +9,10 @@ import (
 )
 
 func invert(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var greyscaleOnly = starlark.False
+	var (
+		image         types.Image
+		greyscaleOnly = false
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,

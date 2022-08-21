@@ -7,9 +7,11 @@ import (
 )
 
 func transform(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var crop = starlark.String("")
-	var geometry = starlark.String("")
+	var (
+		image    types.Image
+		crop     = ""
+		geometry = ""
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,
@@ -20,7 +22,7 @@ func transform(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kw
 		return nil, err
 	}
 
-	newImg := image.Wand.TransformImage(string(crop), string(geometry))
+	newImg := image.Wand.TransformImage(crop, geometry)
 
 	return types.Image{Wand: newImg}, nil
 }

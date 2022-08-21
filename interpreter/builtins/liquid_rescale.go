@@ -9,11 +9,13 @@ import (
 )
 
 func liquidRescale(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var width uint
-	var height uint
-	var deltaX = starlark.Float(1)
-	var rigidity = starlark.Float(1)
+	var (
+		image    types.Image
+		width    uint
+		height   uint
+		deltaX   = 1.0
+		rigidity = 1.0
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,
@@ -27,7 +29,7 @@ func liquidRescale(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.LiquidRescaleImage(width, height, float64(deltaX), float64(rigidity))
+	err := newImg.LiquidRescaleImage(width, height, deltaX, rigidity)
 	if err != nil {
 		return nil, fmt.Errorf("error liquid rescaling image: %w", err)
 	}

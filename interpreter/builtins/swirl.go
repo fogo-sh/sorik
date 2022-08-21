@@ -9,8 +9,10 @@ import (
 )
 
 func swirl(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
-	var image types.Image
-	var degrees float64
+	var (
+		image   types.Image
+		degrees float64
+	)
 
 	if err := starlark.UnpackArgs(
 		fn.Name(), args, kwargs,
