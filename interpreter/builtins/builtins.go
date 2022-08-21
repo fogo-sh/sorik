@@ -20,5 +20,6 @@ func ConstructBuiltins() starlark.StringDict {
 		"sharpen":          starlark.NewBuiltin("sharpen", sharpen),
 		"implode":          starlark.NewBuiltin("implode", implode),
 		"modulate":         starlark.NewBuiltin("modulate", modulate),
+		"gaussian_blur":    starlark.NewBuiltin("gaussian_blur", gaussianBlur),
 	}
 }
