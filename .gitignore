@@ -17,4 +17,5 @@
 .idea/
 
 output.*
+output
 test.star

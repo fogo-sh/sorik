@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/rs/zerolog/log"
 	"go.starlark.net/resolve"
@@ -16,7 +15,7 @@ import (
 	"github.com/fogo-sh/sorik/interpreter/types"
 )
 
-func Run(filename string, source []byte, args map[string]string) error {
+func Run(filename string, source []byte, args map[string]string) ([]byte, error) {
 	resolve.AllowGlobalReassign = true
 
 	imagick.Initialize()
@@ -34,35 +33,26 @@ func Run(filename string, source []byte, args map[string]string) error {
 
 	globals, err := starlark.ExecFile(thread, filename, source, builtins.ConstructBuiltins())
 	if err != nil {
-		return fmt.Errorf("error executing file: %w", err)
+		return nil, fmt.Errorf("error executing file: %w", err)
 	}
 
 	outputVal, found := globals["output"]
 	if !found {
-		return errors.New("no output value found - please ensure you assign your final image to the output variable")
+		return nil, errors.New("no output value found - please ensure you assign your final image to the output variable")
 	}
 
 	outputImg, valid := outputVal.(types.Image)
 	if !valid {
-		return errors.New("output value must be of type Image")
+		return nil, errors.New("output value must be of type Image")
 	}
 
-	err = os.WriteFile(
-		fmt.Sprintf("output.%s", strings.ToLower(outputImg.Wand.GetImageFormat())),
-		outputImg.Wand.GetImagesBlob(),
-		0644,
-	)
-	if err != nil {
-		return fmt.Errorf("error writing output image: %w", err)
-	}
-
-	return nil
+	return outputImg.Wand.GetImagesBlob(), nil
 }
 
-func LoadAndExec(path string, args map[string]string) error {
+func LoadAndExec(path string, args map[string]string) ([]byte, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return fmt.Errorf("error loading script: %w", err)
+		return nil, fmt.Errorf("error loading script: %w", err)
 	}
 
 	return Run(filepath.Base(path), data, args)
