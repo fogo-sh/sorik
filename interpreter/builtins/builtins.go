@@ -3,7 +3,7 @@ package builtins
 import (
 	"go.starlark.net/starlark"
 
-	"github.com/fogo-sh/sorik/interpreter/types"
+	"github.com/fogo-sh/sorik/interpreter/types/enums"
 )
 
 func ConstructBuiltins() starlark.StringDict {
@@ -30,10 +30,10 @@ func ConstructBuiltins() starlark.StringDict {
 		"composite":        starlark.NewBuiltin("composite", composite),
 
 		// Enums
-		"FilterType":        types.FilterTypeEnum{},
-		"ChannelType":       types.ChannelTypeEnum{},
-		"EvaluateOperator":  types.EvaluateOperatorEnum{},
-		"ColorspaceType":    types.ColorspaceTypeEnum{},
-		"CompositeOperator": types.CompositeOperatorEnum{},
+		"FilterType":        enums.FilterTypeEnum{},
+		"ChannelType":       enums.ChannelTypeEnum{},
+		"EvaluateOperator":  enums.EvaluateOperatorEnum{},
+		"ColorspaceType":    enums.ColorspaceTypeEnum{},
+		"CompositeOperator": enums.CompositeOperatorEnum{},
 	}
 }

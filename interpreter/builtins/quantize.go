@@ -6,13 +6,14 @@ import (
 	"go.starlark.net/starlark"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
+	"github.com/fogo-sh/sorik/interpreter/types/enums"
 )
 
 func quantize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
 	var (
 		image          types.Image
 		numColors      uint
-		colorspaceType types.ColorspaceType
+		colorspaceType enums.ColorspaceType
 		treeDepth      uint
 		dither         bool
 		measureError   bool

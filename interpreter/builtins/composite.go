@@ -6,13 +6,14 @@ import (
 	"go.starlark.net/starlark"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
+	"github.com/fogo-sh/sorik/interpreter/types/enums"
 )
 
 func composite(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
 	var (
 		targetImage types.Image
 		sourceImage types.Image
-		operator    types.CompositeOperator
+		operator    enums.CompositeOperator
 		x           int
 		y           int
 	)

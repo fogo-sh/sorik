@@ -6,13 +6,14 @@ import (
 	"go.starlark.net/starlark"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
+	"github.com/fogo-sh/sorik/interpreter/types/enums"
 )
 
 func evaluateChannel(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
 	var (
 		image    types.Image
-		channel  types.ChannelType
-		operator types.EvaluateOperator
+		channel  enums.ChannelType
+		operator enums.EvaluateOperator
 		value    float64
 	)
 

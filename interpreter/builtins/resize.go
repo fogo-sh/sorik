@@ -6,6 +6,7 @@ import (
 	"go.starlark.net/starlark"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
+	"github.com/fogo-sh/sorik/interpreter/types/enums"
 )
 
 func resize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs []starlark.Tuple) (starlark.Value, error) {
@@ -13,7 +14,7 @@ func resize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwarg
 		image  types.Image
 		width  uint
 		height uint
-		filter types.FilterType
+		filter enums.FilterType
 		blur   float64
 	)
 
