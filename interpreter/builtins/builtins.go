@@ -28,6 +28,7 @@ func ConstructBuiltins() starlark.StringDict {
 		"evaluate_channel": starlark.NewBuiltin("evaluate_channel", evaluateChannel),
 		"quantize":         starlark.NewBuiltin("quantize", quantize),
 		"composite":        starlark.NewBuiltin("composite", composite),
+		"rotate":           starlark.NewBuiltin("rotate", rotate),
 
 		// Enums
 		"FilterType":        enums.FilterTypeEnum{},
