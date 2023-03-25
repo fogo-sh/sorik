@@ -28,10 +28,15 @@ func evaluateChannel(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tup
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.EvaluateImageChannel(channel.Value, operator.Value, value)
+
+	origMask := newImg.SetImageChannelMask(channel.Value)
+
+	err := newImg.EvaluateImage(operator.Value, value)
 	if err != nil {
 		return nil, fmt.Errorf("error evaluating image channel: %w", err)
 	}
+
+	newImg.SetImageChannelMask(origMask)
 
 	return types.Image{Wand: newImg}, nil
 }
