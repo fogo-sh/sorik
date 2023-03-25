@@ -30,7 +30,7 @@ func composite(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kw
 	}
 
 	newImg := targetImage.Wand.Clone()
-	err := newImg.CompositeImage(sourceImage.Wand, operator.Value, x, y)
+	err := newImg.CompositeImage(sourceImage.Wand, operator.Value, true, x, y)
 	if err != nil {
 		return nil, fmt.Errorf("error compositing image: %w", err)
 	}

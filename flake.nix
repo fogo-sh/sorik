@@ -19,6 +19,7 @@
             buildInputs = [
               pkgs.go
               pkgs.gotools
+              # TODO: Migrate to imagemagick
               pkgs.imagemagick6
               pkgs.pkg-config
             ];

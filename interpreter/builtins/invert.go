@@ -23,7 +23,7 @@ func invert(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwarg
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.NegateImage(bool(greyscaleOnly))
+	err := newImg.NegateImage(greyscaleOnly)
 	if err != nil {
 		return nil, fmt.Errorf("error inverting image: %w", err)
 	}

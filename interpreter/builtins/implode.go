@@ -2,6 +2,7 @@ package builtins
 
 import (
 	"fmt"
+	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"go.starlark.net/starlark"
 
@@ -23,7 +24,7 @@ func implode(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwar
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.ImplodeImage(radius)
+	err := newImg.ImplodeImage(radius, imagick.INTERPOLATE_PIXEL_NEAREST_INTERPOLATE)
 	if err != nil {
 		return nil, fmt.Errorf("error imploding image: %w", err)
 	}

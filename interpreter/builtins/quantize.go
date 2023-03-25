@@ -2,6 +2,7 @@ package builtins
 
 import (
 	"fmt"
+	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"go.starlark.net/starlark"
 
@@ -32,7 +33,7 @@ func quantize(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwa
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.QuantizeImage(numColors, colorspaceType.Value, treeDepth, dither, measureError)
+	err := newImg.QuantizeImage(numColors, colorspaceType.Value, treeDepth, imagick.DITHER_METHOD_FLOYD_STEINBERG, dither)
 	if err != nil {
 		return nil, fmt.Errorf("error quantizing image: %w", err)
 	}

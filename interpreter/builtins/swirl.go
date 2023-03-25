@@ -2,6 +2,7 @@ package builtins
 
 import (
 	"fmt"
+	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"go.starlark.net/starlark"
 
@@ -23,7 +24,7 @@ func swirl(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, kwargs
 	}
 
 	newImg := image.Wand.Clone()
-	err := newImg.SwirlImage(degrees)
+	err := newImg.SwirlImage(degrees, imagick.INTERPOLATE_PIXEL_BILINEAR)
 	if err != nil {
 		return nil, fmt.Errorf("error swirling image: %w", err)
 	}

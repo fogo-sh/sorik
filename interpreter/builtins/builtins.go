@@ -28,7 +28,6 @@ func ConstructBuiltins() starlark.StringDict {
 		"rotate":           starlark.NewBuiltin("rotate", rotate),
 		"sharpen":          starlark.NewBuiltin("sharpen", sharpen),
 		"swirl":            starlark.NewBuiltin("swirl", swirl),
-		"transform":        starlark.NewBuiltin("transform", transform),
 
 		// Enums
 		"ChannelType":       enums.ChannelTypeEnum{},

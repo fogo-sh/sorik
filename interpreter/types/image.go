@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"go.starlark.net/starlark"
-	"gopkg.in/gographics/imagick.v2/imagick"
+	"gopkg.in/gographics/imagick.v3/imagick"
 )
 
 type Image struct {
