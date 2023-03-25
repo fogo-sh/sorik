@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"go.starlark.net/starlark"
+	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
 )
@@ -23,10 +24,15 @@ func edgeDetect(_ *starlark.Thread, fn *starlark.Builtin, args starlark.Tuple, k
 	}
 
 	newImg := image.Wand.Clone()
+
+	origMask := newImg.SetImageChannelMask(imagick.CHANNEL_RED | imagick.CHANNEL_GREEN | imagick.CHANNEL_BLUE)
+
 	err := newImg.EdgeImage(radius)
 	if err != nil {
 		return nil, fmt.Errorf("error edge detecting image: %w", err)
 	}
+
+	newImg.SetImageChannelMask(origMask)
 
 	return types.Image{Wand: newImg}, nil
 }

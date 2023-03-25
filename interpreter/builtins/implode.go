@@ -2,9 +2,9 @@ package builtins
 
 import (
 	"fmt"
-	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"go.starlark.net/starlark"
+	"gopkg.in/gographics/imagick.v3/imagick"
 
 	"github.com/fogo-sh/sorik/interpreter/types"
 )
